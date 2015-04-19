@@ -21,7 +21,6 @@ public class LoadingScreen extends Activity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.overview_layout);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -32,7 +31,7 @@ public class LoadingScreen extends Activity {
 
                 finish();
             }
-        }, 6000);
+        }, 5000);
     }
 
 }
