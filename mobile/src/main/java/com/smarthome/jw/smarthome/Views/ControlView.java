@@ -2,6 +2,8 @@ package com.smarthome.jw.smarthome.Views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
@@ -18,6 +20,7 @@ public class ControlView extends View {
 
     private ArrayList<Device> Devices = new ArrayList<Device>();
     private Template Template;
+    private String test = "test";
 
     public ControlView(Context context) {
         super(context);
@@ -27,10 +30,15 @@ public class ControlView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        for(int i = 0; i < Devices.size() - 1; i++) {
+        int height = canvas.getHeight();
+        int width = canvas.getWidth();
+        Paint paint = new Paint();
+        paint.setTextSize(25);
+        paint.setColor(Color.BLACK);
+        canvas.drawText(test,width/2,height/2,paint);
+        /**for(int i = 0; i < Devices.size() - 1; i++) {
 
             Devices.get(i).Draw(canvas, Template.Rect.get(i));
-        }
+        }*/
     }
 }

@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import com.smarthome.jw.smarthome.R;
+import com.smarthome.jw.smarthome.Views.ControlView;
 
 /**
  * Created by jonas on 16.04.15.
@@ -17,7 +18,7 @@ public class OverviewScreen extends Activity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        setContentView(R.layout.overview_layout);
+        setContentView(new ControlView(getApplicationContext()));
 
     }
 
