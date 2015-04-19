@@ -12,37 +12,48 @@ import java.util.ArrayList;
 public class Template {
 
     private Integer NumOfDevices;
+    public Double Margin;
 
     public ArrayList<RelativeRect> RelRect = new ArrayList<RelativeRect>();
 
     public Template() {
 
         NumOfDevices = 0;
+        Margin = 0.02;
+        RelRect.clear();
     }
 
 
     public void setTemplate(Integer numOfDevices) {
 
         NumOfDevices = numOfDevices;
-        RelRect.clear();
 
-        for (int i = 0; i < NumOfDevices ; i++) {
-            if (NumOfDevices > RelRect.size()) {
-                RelRect.add(new RelativeRect(0.25,0.25,0.75,0.75));
-            }
+        RelRect = getDoubleTemplate();
+        /** for (int i = 0; i < numOfDevices ; i++) {
+
+
+
+         }*/
+
+    }
+
+
+    public ArrayList<RelativeRect> getDoubleTemplate() {
+
+        ArrayList<RelativeRect> relRect = new ArrayList<RelativeRect>();
+
+        relRect.add(new RelativeRect(0.0 + Margin, 0.0 + Margin, 0.5 - Margin, 1.0 - Margin));
+        relRect.add(new RelativeRect(0.5 + Margin, 0.0 + Margin, 1.0 - Margin, 1.0 - Margin));
+
+        return relRect;
 
         }
 
 
-    }
 
-    public void calcTemplate() {
 
-        for(int i = 0; i < NumOfDevices; i++) {
-            RelRect.add(new RelativeRect(0.25,0.25,0.75,0.75));
 
-        }
-    }
+
 
     public RelativeRect getRelRect(int i) {
         return RelRect.get(i);

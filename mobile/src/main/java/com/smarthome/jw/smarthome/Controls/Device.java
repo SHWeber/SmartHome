@@ -13,4 +13,5 @@ public abstract class Device  {
 
     abstract public boolean Draw(Canvas canvas, Rect rect);
 
+
 }

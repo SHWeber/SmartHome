@@ -26,17 +26,17 @@ public class ControlView extends View {
 
         Page = new Page(test);
         Page.AddDevice(new Light());
-
+        Page.AddDevice(new Light());
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        Rect aRect = new Rect(0,0,canvas.getWidth(),canvas.getHeight());
+        Page.Template.setTemplate(Page.Devices.size());
 
         for(int i = 0; i < Page.Devices.size(); i++) {
-            Page.Template.setTemplate(Page.Devices.size());
+            Rect aRect = new Rect(0,0,canvas.getWidth(),canvas.getHeight());
             RelativeRect relativeRect =  Page.Template.RelRect.get(i);
             Rect bRect = relativeRect.CalcRect(aRect);
 
