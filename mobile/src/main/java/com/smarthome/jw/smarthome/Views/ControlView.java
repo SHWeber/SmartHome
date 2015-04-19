@@ -1,6 +1,8 @@
 package com.smarthome.jw.smarthome.Views;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.View;
 
 import com.smarthome.jw.smarthome.Device.Device;
@@ -22,8 +24,13 @@ public class ControlView extends View {
 
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
 
+        for(int i = 0; i < Devices.size() - 1; i++) {
 
-
-
+            Devices.get(i).Draw(canvas, Template.Rect.get(i));
+        }
+    }
 }

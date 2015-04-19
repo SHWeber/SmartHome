@@ -1,6 +1,8 @@
 package com.smarthome.jw.smarthome.Device;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.View;
 
 /**
@@ -11,5 +13,6 @@ public abstract class Device  {
     protected Device() {
     }
 
+    abstract public boolean Draw(Canvas canvas, Rect rect);
 
 }
