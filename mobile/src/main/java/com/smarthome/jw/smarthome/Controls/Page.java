@@ -16,21 +16,29 @@ public class Page  {
     public Page(String name) {
 
         Name = name;
+        Template = new Template();
+        Devices.clear();
     }
 
     public Page(String name, Device device) {
        Name = name;
+       Template = new Template();
        Devices.add(device);
     }
 
     public Page(String name, ArrayList<Device> devices) {
+
         Name = name;
-        Devices.addAll(devices);
+        Template = new Template();
+        for (int i = 0; i <devices.size(); i++) {
+            AddDevice(devices.get(i));
+        }
     }
 
     public boolean AddDevice(Device device) {
 
         Devices.add(device);
+        Template.setTemplate(Devices.size());
         return true;
     }
 

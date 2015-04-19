@@ -2,10 +2,13 @@ package com.smarthome.jw.smarthome.Views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.View;
 
 import com.smarthome.jw.smarthome.Controls.Device;
+import com.smarthome.jw.smarthome.Controls.Light;
 import com.smarthome.jw.smarthome.Controls.Page;
+import com.smarthome.jw.smarthome.Template.RelativeRect;
 import com.smarthome.jw.smarthome.Template.Template;
 
 import java.util.ArrayList;
@@ -21,6 +24,8 @@ public class ControlView extends View {
     public ControlView(Context context) {
         super(context);
 
+        Page = new Page(test);
+        Page.AddDevice(new Light());
 
     }
 
@@ -28,9 +33,16 @@ public class ControlView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        for(int i = 0; i < Page.Devices.size() - 1; i++) {
+        Rect aRect = new Rect(0,0,canvas.getWidth(),canvas.getHeight());
 
-            Page.Devices.get(i).Draw(canvas, Page.Template.Rect.get(i));
+        for(int i = 0; i < Page.Devices.size(); i++) {
+            Page.Template.setTemplate(Page.Devices.size());
+            RelativeRect relativeRect =  Page.Template.RelRect.get(i);
+            Rect bRect = relativeRect.CalcRect(aRect);
+
+            Device device = Page.Devices.get(i);
+            Light light = (Light) device;
+            light.Draw(canvas, bRect);
         }
     }
 }

@@ -17,8 +17,8 @@ public class OverviewScreen extends Activity {
         super.onCreate(savedInstanceState);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-        setContentView(new ControlView(getApplicationContext()));
+        ControlView controlView = new ControlView(this);
+         setContentView(controlView);
 
     }
 
