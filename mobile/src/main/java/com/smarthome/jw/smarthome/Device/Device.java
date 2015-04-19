@@ -6,9 +6,10 @@ import android.view.View;
 /**
  * Created by jonas on 19.04.15.
  */
-public abstract class Device extends View {
+public abstract class Device  {
 
-    public Device(Context context) {
-        super(context);
+    protected Device() {
     }
+
+
 }
