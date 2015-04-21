@@ -1,11 +1,15 @@
 package com.smarthome.jw.smarthome.Connection;
 
+import org.apache.http.protocol.HTTP;
+
 /**
  * Created by jonas on 17.04.15.
  */
-public class Http {
+public class HttpServer {
 
-    public Http() {
+    public HttpServer() {
+
+
         
     }
 }

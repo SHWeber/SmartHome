@@ -18,13 +18,13 @@ import java.util.ArrayList;
  */
 public class ControlView extends View {
 
-    public Page Page;
+
     private String test = "test";
+    private Page Page;
 
-    public ControlView(Context context) {
+    public ControlView(Context context,Page newPage) {
         super(context);
-
-        Page = new Page(test);
+        Page = newPage;
         Page.AddDevice(new Light());
         Page.AddDevice(new Light());
     }
