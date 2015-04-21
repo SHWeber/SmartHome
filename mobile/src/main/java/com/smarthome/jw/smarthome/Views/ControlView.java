@@ -25,8 +25,8 @@ public class ControlView extends View {
     public ControlView(Context context,Page newPage) {
         super(context);
         Page = newPage;
-        Page.AddDevice(new Light());
-        Page.AddDevice(new Light());
+        Page.AddDevice(new Light("WZ","Wandlampe_L","Light","Wohnzimmer","Wandlampe Links"));
+
     }
 
     @Override
