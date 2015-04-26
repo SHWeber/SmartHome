@@ -6,7 +6,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "com.smarthome.jw.smarthome.Screen.OverviewScreen"/>
+        className = "com.smarthome.jw.smarthome.Interfaces.Screen.OverviewScreen"/>
       <point      
         x = "504"      
         y = "100"/>
@@ -14,7 +14,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "com.smarthome.jw.smarthome.Screen.LoadingScreen"/>
+        className = "com.smarthome.jw.smarthome.Interfaces.Screen.LoadingScreen"/>
       <point      
         x = "2256"      
         y = "96"/>

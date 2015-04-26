@@ -1,7 +1,6 @@
 package com.smarthome.jw.smarthome.Layouts;
 
-import com.smarthome.jw.smarthome.Controls.Device;
-import com.smarthome.jw.smarthome.Controls.Page;
+import com.smarthome.jw.smarthome.Devices.Gerät;
 
 import java.util.ArrayList;
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
  */
 public class RoomLayout extends Page {
 
-    public RoomLayout(String name, Device device) {
+    public RoomLayout(String name, Gerät device) {
 
         super(name, device);
     }
@@ -19,12 +18,12 @@ public class RoomLayout extends Page {
         super(name);
     }
 
-    public RoomLayout(String name, ArrayList<Device> devices) {
+    public RoomLayout(String name, ArrayList<Gerät> devices) {
         super(name, devices);
     }
 
     @Override
-    public boolean AddDevice(Device device) {
+    public boolean AddDevice(Gerät device) {
         return super.AddDevice(device);
     }
 }

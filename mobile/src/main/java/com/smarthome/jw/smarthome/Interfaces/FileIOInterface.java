@@ -1,4 +1,4 @@
-package com.smarthome.jw.smarthome.Interfaces.InputOutput;
+package com.smarthome.jw.smarthome.Interfaces;
 
 import android.content.SharedPreferences;
 

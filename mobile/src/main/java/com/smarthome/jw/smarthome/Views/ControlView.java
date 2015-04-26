@@ -5,13 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.View;
 
-import com.smarthome.jw.smarthome.Controls.Device;
-import com.smarthome.jw.smarthome.Controls.Light;
-import com.smarthome.jw.smarthome.Controls.Page;
+import com.smarthome.jw.smarthome.Devices.Gerät;
+import com.smarthome.jw.smarthome.Devices.Licht;
 import com.smarthome.jw.smarthome.Template.RelativeRect;
-import com.smarthome.jw.smarthome.Template.Template;
-
-import java.util.ArrayList;
 
 /**
  * Created by jonas on 19.04.15.
@@ -20,12 +16,12 @@ public class ControlView extends View {
 
 
     private String test = "test";
-    private Page Page;
+    private com.smarthome.jw.smarthome.Layouts.Page Page;
 
-    public ControlView(Context context,Page newPage) {
+    public ControlView(Context context, com.smarthome.jw.smarthome.Layouts.Page newPage) {
         super(context);
         Page = newPage;
-        Page.AddDevice(new Light("WZ","Wandlampe_L","Light","Wohnzimmer","Wandlampe Links"));
+       // Page.AddDevice(new Light("WZ","Wandlampe_L","Light","Wohnzimmer","Wandlampe Links"));
 
     }
 
@@ -40,8 +36,8 @@ public class ControlView extends View {
             RelativeRect relativeRect =  Page.Template.RelRect.get(i);
             Rect bRect = relativeRect.CalcRect(aRect);
 
-            Device device = Page.Devices.get(i);
-            Light light = (Light) device;
+            Gerät gerät = Page.Devices.get(i);
+            Licht light = (Licht) gerät;
             light.Draw(canvas, bRect);
         }
     }

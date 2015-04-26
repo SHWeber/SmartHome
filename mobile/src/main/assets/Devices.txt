@@ -1,0 +1,23 @@
+Light,WZ_Vitrine,Wonhzimmer,Vitrine Licht
+Light,WZ_TV,Wonhzimmer,TV
+Light,WZ_TVLichtSw_1,Wonhzimmer,TV Licht
+Light,WZ_MediaClient,Wonhzimmer,Media
+Light,WZ_Rollo_L,Wonhzimmer,Rollo Links
+Light,WZ_Rollo_R,Wonhzimmer,Rollo Rechts
+Light,WZ_Esstisch,Wonhzimmer,Esstisch
+Light,WZ_Wandlampe_L,Wonhzimmer,Wandlampe Links
+Light,WZ_Wandlampe_R,Wonhzimmer,Wandlampe Rechts
+Light,WZ_Wandlampe_TV_Board,Wonhzimmer,Wandlampe TV
+Light,WZ_Steckdose_Sideboard_R,Wonhzimmer,Sideboard
+Light,WZ_Heizung,Wonhzimmer,Heizung
+Light,WZ_Terrassentuer_L,Wonhzimmer,Terrassentür
+Light,WZ_ModeAnwesend,Wonhzimmer,Anwesend
+Light,WZ_Steckdose_Move,Wonhzimmer,Move
+Light,SZ_MediaClient,Wonhzimmer,MediaClient
+Light,SZ_LichtBett,Wonhzimmer,Licht Bett
+Light,SZ_Fenster,Wonhzimmer,Fenster
+Temp,SZ_Heizung,Wonhzimmer,Heizung
+Temp,BZ_Heizung,Wonhzimmer,Heizung
+Window,BZ_Fenster,Wonhzimmer,Fenster
+Temp,DG_Heizung,Wonhzimmer,Heizung
+Light,KU_Rollo,Wonhzimmer,Rollo

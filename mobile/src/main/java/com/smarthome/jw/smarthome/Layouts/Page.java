@@ -1,5 +1,6 @@
-package com.smarthome.jw.smarthome.Controls;
+package com.smarthome.jw.smarthome.Layouts;
 
+import com.smarthome.jw.smarthome.Devices.Gerät;
 import com.smarthome.jw.smarthome.Template.Template;
 
 import java.util.ArrayList;
@@ -7,9 +8,9 @@ import java.util.ArrayList;
 /**
  * Created by jonas on 19.04.15.
  */
-public class Page  {
+public class Page {
 
-    public  ArrayList<Device> Devices = new ArrayList<Device>();
+    public  ArrayList<Gerät> Devices = new ArrayList<Gerät>();
     public  Template Template;
     public String Name;
 
@@ -20,13 +21,13 @@ public class Page  {
         Devices.clear();
     }
 
-    public Page(String name, Device device) {
+    public Page(String name, Gerät gerät) {
        Name = name;
        Template = new Template();
-       Devices.add(device);
+       Devices.add(gerät);
     }
 
-    public Page(String name, ArrayList<Device> devices) {
+    public Page(String name, ArrayList<Gerät> devices) {
 
         Name = name;
         Template = new Template();
@@ -35,11 +36,22 @@ public class Page  {
         }
     }
 
-    public boolean AddDevice(Device device) {
+    public boolean AddDevice(Gerät device) {
 
         Devices.add(device);
         Template.setTemplate(Devices.size());
         return true;
+    }
+
+    public boolean UpdatePage() {
+
+        for (int i = 0; i < Devices.size() -1 ; i++) {
+
+            Devices.get(i).Update();
+        }
+
+        return true;
+
     }
 
 

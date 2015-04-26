@@ -1,26 +1,32 @@
-package com.smarthome.jw.smarthome.Controls;
+package com.smarthome.jw.smarthome.Devices;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import com.smarthome.jw.smarthome.Interfaces.Devices.LightInterface;
+import com.smarthome.jw.smarthome.InputOutput.HttpIO;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by jonas on 19.04.15.
  */
-public class Light extends Device implements LightInterface {
+public class Licht extends Gerät {
 
 
     private String actState;
 
-    public Light(String room, String name,String type, String roomAlias, String nameAlias) {
-        super(room, name,type,roomAlias,nameAlias);
+    public Licht(String type, String name, String roomAlias, String nameAlias) {
+        super(type,name,roomAlias,nameAlias);
 
         actState = null;
 
     }
+
+
 
     @Override
     public boolean setState(String state) {
@@ -36,6 +42,7 @@ public class Light extends Device implements LightInterface {
             return false;
         }
     }
+
 
     @Override
     public String getState() {
@@ -58,5 +65,21 @@ public class Light extends Device implements LightInterface {
         return false;
     }
 
+    @Override
+    public void Update() {
 
+        HttpIO httpIO = new HttpIO();
+
+        BufferedReader reader = null;
+        String inputLine;
+
+        try {
+            reader = new BufferedReader(new InputStreamReader(httpIO.readLink(getName())));
+            actState = reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

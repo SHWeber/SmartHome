@@ -6,7 +6,7 @@ import android.content.res.AssetManager;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 
-import com.smarthome.jw.smarthome.Interfaces.InputOutput.FileIOInterface;
+import com.smarthome.jw.smarthome.Interfaces.FileIOInterface;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,6 +46,8 @@ public class FileIO implements FileIOInterface {
     public OutputStream writeFile(String file) throws IOException {
         return new FileOutputStream(externalStoragePath + file);
     }
+
+
 
     public SharedPreferences getSharedPref() {
         return PreferenceManager.getDefaultSharedPreferences(context);
