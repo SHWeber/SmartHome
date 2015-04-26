@@ -1,5 +1,7 @@
 package com.smarthome.jw.smarthome.Layouts;
 
+import android.content.Context;
+
 import com.smarthome.jw.smarthome.Devices.Gerät;
 
 import java.util.ArrayList;
@@ -9,17 +11,8 @@ import java.util.ArrayList;
  */
 public class RoomLayout extends Page {
 
-    public RoomLayout(String name, Gerät device) {
-
-        super(name, device);
-    }
-
-    public RoomLayout(String name) {
-        super(name);
-    }
-
-    public RoomLayout(String name, ArrayList<Gerät> devices) {
-        super(name, devices);
+    public RoomLayout(Context context, String name) {
+        super(context, name);
     }
 
     @Override

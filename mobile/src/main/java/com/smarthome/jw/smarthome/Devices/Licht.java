@@ -22,7 +22,7 @@ public class Licht extends Gerät {
     public Licht(String type, String name, String roomAlias, String nameAlias) {
         super(type,name,roomAlias,nameAlias);
 
-        actState = null;
+        actState = "";
 
     }
 
@@ -51,16 +51,22 @@ public class Licht extends Gerät {
 
     @Override
     public boolean Draw(Canvas canvas, Rect rect) {
-        if (actState != null) {
+
 
             int wdt = rect.centerX();
             int hgt = rect.centerY();
             Paint paint = new Paint();
-            paint.setColor(Color.BLACK);
+            paint.setColor(Color.WHITE);
             paint.setTextSize(50);
 
-            canvas.drawText(getNameAlias(), wdt, hgt, paint);
-        }
+            canvas.drawLine(rect.left,rect.top,rect.right,rect.top,paint);
+            canvas.drawLine(rect.right,rect.top,rect.right,rect.bottom,paint);
+            canvas.drawLine(rect.right,rect.bottom,rect.left,rect.bottom,paint);
+            canvas.drawLine(rect.left,rect.bottom,rect.left,rect.top,paint);
+
+            canvas.drawText(getState(), wdt, hgt, paint);
+
+
 
         return false;
     }

@@ -2,14 +2,16 @@ package com.smarthome.jw.smarthome.Template;
 
 
 
+import android.content.Context;
 import android.graphics.Rect;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 
 /**
  * Created by jonas on 19.04.15.
  */
-public class Template {
+public class Template{
 
     private Integer NumOfDevices;
     public Double Margin;
@@ -17,12 +19,10 @@ public class Template {
     public ArrayList<RelativeRect> RelRect = new ArrayList<RelativeRect>();
 
     public Template() {
-
         NumOfDevices = 0;
         Margin = 0.02;
         RelRect.clear();
     }
-
 
     public void setTemplate(Integer numOfDevices) {
 
@@ -30,9 +30,6 @@ public class Template {
 
         RelRect = getDoubleTemplate();
         /** for (int i = 0; i < numOfDevices ; i++) {
-
-
-
          }*/
 
     }
@@ -47,7 +44,7 @@ public class Template {
 
         return relRect;
 
-        }
+    }
 
 
 

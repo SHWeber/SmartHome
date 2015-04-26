@@ -1,6 +1,14 @@
 package com.smarthome.jw.smarthome.Layouts;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.GridView;
+
 import com.smarthome.jw.smarthome.Devices.Gerät;
+import com.smarthome.jw.smarthome.Devices.Licht;
+import com.smarthome.jw.smarthome.Template.RelativeRect;
 import com.smarthome.jw.smarthome.Template.Template;
 
 import java.util.ArrayList;
@@ -8,32 +16,20 @@ import java.util.ArrayList;
 /**
  * Created by jonas on 19.04.15.
  */
-public class Page {
+public class Page extends View {
 
     public  ArrayList<Gerät> Devices = new ArrayList<Gerät>();
     public  Template Template;
     public String Name;
+    public GridView gridView;
 
-    public Page(String name) {
-
+    public Page(Context context,String name) {
+        super(context);
         Name = name;
         Template = new Template();
         Devices.clear();
-    }
+        gridView = new GridView(context);
 
-    public Page(String name, Gerät gerät) {
-       Name = name;
-       Template = new Template();
-       Devices.add(gerät);
-    }
-
-    public Page(String name, ArrayList<Gerät> devices) {
-
-        Name = name;
-        Template = new Template();
-        for (int i = 0; i <devices.size(); i++) {
-            AddDevice(devices.get(i));
-        }
     }
 
     public boolean AddDevice(Gerät device) {
@@ -43,16 +39,39 @@ public class Page {
         return true;
     }
 
-    public boolean UpdatePage() {
+    public boolean UpdatePageState() {
 
-        for (int i = 0; i < Devices.size() -1 ; i++) {
+        for (int i = 0; i < Devices.size() ; i++) {
 
             Devices.get(i).Update();
+
+
         }
 
         return true;
 
     }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        Template.setTemplate(Devices.size());
+
+        for (int i = 0; i < Devices.size(); i++) {
+            Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
+            RelativeRect relativeRect = Template.RelRect.get(i);
+            Rect bRect = relativeRect.CalcRect(aRect);
+
+            Gerät gerät = Devices.get(i);
+            Licht light = (Licht) gerät;
+            light.Draw(canvas, bRect);
+        }
+
+    }
+
+
+
 
 
 }
