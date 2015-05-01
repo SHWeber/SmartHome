@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.util.Log;
 
 import com.smarthome.jw.smarthome.Devices.Licht;
 import com.smarthome.jw.smarthome.InputOutput.FileIO;
@@ -31,6 +32,8 @@ public class Home extends Activity {
         page = new Page(getApplicationContext(),"First");
         page.AddDevice(new Licht("Light","WZ_Vitrine","Wonhzimmer","Vitrine Licht"));
         page.AddDevice(new Licht("Light","WZ_Vitrine","Wonhzimmer","Vitrine Licht"));
+
+
         page.UpdatePageState();
         setContentView(page);
 

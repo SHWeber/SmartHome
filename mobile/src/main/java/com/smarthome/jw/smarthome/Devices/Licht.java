@@ -4,11 +4,19 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.net.Network;
+import android.os.AsyncTask;
 
+import com.smarthome.jw.smarthome.InputOutput.HTTP;
 import com.smarthome.jw.smarthome.InputOutput.HttpIO;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
@@ -52,7 +60,7 @@ public class Licht extends Gerät {
     @Override
     public boolean Draw(Canvas canvas, Rect rect) {
 
-
+            Update();
             int wdt = rect.centerX();
             int hgt = rect.centerY();
             Paint paint = new Paint();
@@ -63,8 +71,8 @@ public class Licht extends Gerät {
             canvas.drawLine(rect.right,rect.top,rect.right,rect.bottom,paint);
             canvas.drawLine(rect.right,rect.bottom,rect.left,rect.bottom,paint);
             canvas.drawLine(rect.left,rect.bottom,rect.left,rect.top,paint);
-
-            canvas.drawText(getState(), wdt, hgt, paint);
+            canvas.drawText(getNameAlias(),wdt,hgt,paint);
+            canvas.drawText(getState(), wdt, hgt+50, paint);
 
 
 
@@ -74,18 +82,34 @@ public class Licht extends Gerät {
     @Override
     public void Update() {
 
-        HttpIO httpIO = new HttpIO();
+/**
+        String response = "";
+        String Network = "http://server:8083/fhem&cmd=%7BValue%28%22";
+        String getState = "%22%29%7D&XHR=1";
 
-        BufferedReader reader = null;
-        String inputLine;
-
+        DefaultHttpClient client = new DefaultHttpClient();
+        HttpGet httpGet = new HttpGet(Network +getName()+getState);
         try {
-            reader = new BufferedReader(new InputStreamReader(httpIO.readLink(getName())));
-            actState = reader.readLine();
-        } catch (IOException e) {
+            HttpResponse execute = client.execute(httpGet);
+            InputStream content = execute.getEntity().getContent();
+
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+            String s = "";
+            while ((s = buffer.readLine()) != null) {
+                response += s;
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        setState(response);*/
+
+
 
     }
+
+
+
+
 }

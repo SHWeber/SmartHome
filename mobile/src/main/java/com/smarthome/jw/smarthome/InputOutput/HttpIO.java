@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 
 import com.smarthome.jw.smarthome.Interfaces.HttpIOInterface;
 
@@ -31,6 +32,7 @@ public class HttpIO implements HttpIOInterface {
 
 
     }
+
 
 
 

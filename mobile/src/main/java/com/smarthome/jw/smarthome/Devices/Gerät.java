@@ -2,6 +2,15 @@ package com.smarthome.jw.smarthome.Devices;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.AsyncTask;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by jonas on 19.04.15.
@@ -77,6 +86,8 @@ public abstract class Gerät {
     public void setUpdated(boolean isUpdated) {
         this.isUpdated = isUpdated;
     }
+
+
 
 
 
