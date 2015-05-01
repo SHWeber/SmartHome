@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ScrollView;
 
 import com.smarthome.jw.smarthome.Devices.Gerät;
 import com.smarthome.jw.smarthome.Devices.Licht;
@@ -18,10 +19,11 @@ import java.util.ArrayList;
  */
 public class Page extends View {
 
-    public  ArrayList<Gerät> Devices = new ArrayList<Gerät>();
-    public  Template Template;
+    public ArrayList<Gerät> Devices = new ArrayList<Gerät>();
+    public Template Template;
     public String Name;
     public GridView gridView;
+    public ScrollView scrollView;
 
     public Page(Context context,String name) {
         super(context);
@@ -29,6 +31,7 @@ public class Page extends View {
         Template = new Template();
         Devices.clear();
         gridView = new GridView(context);
+        scrollView = new ScrollView(context);
 
     }
 
@@ -57,6 +60,7 @@ public class Page extends View {
         super.onDraw(canvas);
 
         Template.setTemplate(Devices.size());
+        UpdatePageState();
 
         for (int i = 0; i < Devices.size(); i++) {
             Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -65,6 +69,7 @@ public class Page extends View {
 
             Gerät gerät = Devices.get(i);
             Licht light = (Licht) gerät;
+
             light.Draw(canvas, bRect);
         }
 
