@@ -18,9 +18,9 @@ public class ControlView extends View {
     private String test = "test";
     private com.smarthome.jw.smarthome.Layouts.Page Page;
 
-    public ControlView(Context context, com.smarthome.jw.smarthome.Layouts.Page newPage) {
+    public ControlView(Context context, com.smarthome.jw.smarthome.Layouts.Page newPageScroll) {
         super(context);
-        Page = newPage;
+        Page = newPageScroll;
        // Page.AddDevice(new Light("WZ","Wandlampe_L","Light","Wohnzimmer","Wandlampe Links"));
 
     }
@@ -29,16 +29,6 @@ public class ControlView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        Page.Template.setTemplate(Page.Devices.size());
 
-        for(int i = 0; i < Page.Devices.size(); i++) {
-            Rect aRect = new Rect(0,0,canvas.getWidth(),canvas.getHeight());
-            RelativeRect relativeRect =  Page.Template.RelRect.get(i);
-            Rect bRect = relativeRect.CalcRect(aRect);
-
-            Gerät gerät = Page.Devices.get(i);
-            Licht light = (Licht) gerät;
-            light.Draw(canvas, bRect);
-        }
     }
 }

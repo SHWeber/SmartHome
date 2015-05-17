@@ -1,5 +1,6 @@
 package com.smarthome.jw.smarthome.Devices;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,12 +26,12 @@ import java.io.InputStreamReader;
 public class Licht extends Gerät {
 
 
-    private String actState;
+    private boolean actState;
 
-    public Licht(String type, String name, String roomAlias, String nameAlias) {
-        super(type,name,roomAlias,nameAlias);
+    public Licht(Context context,String type, String name, String roomAlias, String nameAlias) {
+        super(context,type,name,roomAlias,nameAlias);
 
-        actState = "";
+        actState = false;
 
     }
 
@@ -40,7 +41,7 @@ public class Licht extends Gerät {
     public boolean setState(String state) {
         if (state != null)  {
 
-            actState = state;
+            actState = false;
             setUpdated(true);
             return true;
         }
@@ -52,9 +53,16 @@ public class Licht extends Gerät {
     }
 
 
+
     @Override
     public String getState() {
-        return actState;
+        if (actState) {
+            return "An";
+        } else if (!actState) {
+            return "Aus";
+        }
+
+        return "";
     }
 
     @Override
@@ -72,7 +80,7 @@ public class Licht extends Gerät {
             canvas.drawLine(rect.right,rect.bottom,rect.left,rect.bottom,paint);
             canvas.drawLine(rect.left,rect.bottom,rect.left,rect.top,paint);
             canvas.drawText(getNameAlias(),wdt,hgt,paint);
-            canvas.drawText(getState(), wdt, hgt+50, paint);
+          //  canvas.drawText(getState(), wdt, hgt+50, paint);
 
 
 

@@ -1,5 +1,6 @@
 package com.smarthome.jw.smarthome.Devices;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,8 +13,8 @@ public class Steckdose extends Gerät {
 
     private String actState;
 
-    public Steckdose(String type, String name, String roomAlias, String nameAlias) {
-        super(type,name,roomAlias,nameAlias);
+    public Steckdose(Context context,String type, String name, String roomAlias, String nameAlias) {
+        super(context,type,name,roomAlias,nameAlias);
 
         actState = "";
 

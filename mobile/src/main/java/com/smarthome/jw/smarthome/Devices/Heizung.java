@@ -1,5 +1,6 @@
 package com.smarthome.jw.smarthome.Devices;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
@@ -11,8 +12,8 @@ public class Heizung extends Gerät {
     private String temperatur;
     private String luftfeuchtigkeit;
 
-    public Heizung(String type, String name, String roomAlias, String nameAlias) {
-        super(type, name, roomAlias, nameAlias);
+    public Heizung(Context context,String type, String name, String roomAlias, String nameAlias) {
+        super(context,type, name, roomAlias, nameAlias);
 
 
     }

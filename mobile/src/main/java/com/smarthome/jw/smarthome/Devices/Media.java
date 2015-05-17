@@ -1,5 +1,6 @@
 package com.smarthome.jw.smarthome.Devices;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -12,8 +13,8 @@ public class Media extends Gerät {
 
     private String actState;
 
-    public Media(String type, String name, String roomAlias, String nameAlias) {
-        super(type,name,roomAlias,nameAlias);
+    public Media(Context context,String type, String name, String roomAlias, String nameAlias) {
+        super(context,type,name,roomAlias,nameAlias);
 
         actState = "";
 
@@ -25,7 +26,7 @@ public class Media extends Gerät {
     public boolean setState(String state) {
         if (state != null)  {
 
-            actState = state;
+            actState = "";
             setUpdated(true);
             return true;
         }
@@ -55,9 +56,9 @@ public class Media extends Gerät {
         canvas.drawLine(rect.left,rect.top,rect.right,rect.top,paint);
         canvas.drawLine(rect.right,rect.top,rect.right,rect.bottom,paint);
         canvas.drawLine(rect.right,rect.bottom,rect.left,rect.bottom,paint);
-        canvas.drawLine(rect.left,rect.bottom,rect.left,rect.top,paint);
+        canvas.drawLine(rect.left, rect.bottom, rect.left, rect.top, paint);
         canvas.drawText(getNameAlias(),wdt,hgt,paint);
-        canvas.drawText(getState(), wdt, hgt+50, paint);
+        canvas.drawText(actState, wdt, hgt+50, paint);
 
 
 

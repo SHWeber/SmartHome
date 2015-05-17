@@ -1,8 +1,10 @@
 package com.smarthome.jw.smarthome.Devices;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.AsyncTask;
+import android.view.View;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -15,7 +17,7 @@ import java.io.InputStreamReader;
 /**
  * Created by jonas on 19.04.15.
  */
-public abstract class Gerät {
+public abstract class Gerät extends View {
 
     private String RoomAlias;
     private String Name;
@@ -26,7 +28,8 @@ public abstract class Gerät {
 
 
 
-    public Gerät(String type, String name, String roomAlias, String nameAlias) {
+    public Gerät(Context context,String type, String name, String roomAlias, String nameAlias) {
+        super(context);
 
         Name = name;
         Type = type;

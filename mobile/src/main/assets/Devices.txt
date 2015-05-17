@@ -1,23 +1,23 @@
-Licht,WZ_Vitrine,Wonhzimmer,Vitrine Licht
-TV,WZ_TV,Wonhzimmer,TV
-Licht,WZ_TVLichtSw_1,Wonhzimmer,TV Licht
-Media,WZ_MediaClient,Wonhzimmer,Media
-Rollo,WZ_Rollo_L,Wonhzimmer,Rollo Links
-Rollo,WZ_Rollo_R,Wonhzimmer,Rollo Rechts
-DimLicht,WZ_Esstisch,Wonhzimmer,Esstisch
-Licht,WZ_Wandlampe_L,Wonhzimmer,Wandlampe Links
-Licht,WZ_Wandlampe_R,Wonhzimmer,Wandlampe Rechts
-Licht,WZ_Wandlampe_TV_Board,Wonhzimmer,Wandlampe TV
-Steckdose,WZ_Steckdose_Sideboard_R,Wonhzimmer,Sideboard
-Heizung,WZ_Heizung,Wonhzimmer,Heizung
-Kontakt,WZ_Terrassentuer_L,Wonhzimmer,Terrassentür
-Licht,WZ_ModeAnwesend,Wonhzimmer,Anwesend
-Steckdose,WZ_Steckdose_Move,Wonhzimmer,Move
-Media,SZ_MediaClient,Wonhzimmer,MediaClient
-RGBLicht,SZ_LichtBett,Wonhzimmer,Licht Bett
-Kontakt,SZ_Fenster,Wonhzimmer,Fenster
-Heizung,SZ_Heizung,Wonhzimmer,Heizung
-Heizung,BZ_Heizung,Wonhzimmer,Heizung
-Kontakt,BZ_Fenster,Wonhzimmer,Fenster
-Heizung,DG_Heizung,Wonhzimmer,Heizung
-Rollo,KU_Rollo,Wonhzimmer,Rollo
+Licht,WZ_Vitrine,Wohnzimmer,Vitrine Licht
+TV,WZ_TV,Wohnzimmer,TV
+Licht,WZ_TVLichtSw_1,Wohnzimmer,TV Licht
+Media,WZ_MediaClient,Wohnzimmer,Media
+Rollo,WZ_Rollo_L,Wohnzimmer,Rollo Links
+Rollo,WZ_Rollo_R,Wohnzimmer,Rollo Rechts
+DimLicht,WZ_Esstisch,Wohnzimmer,Esstisch
+Licht,WZ_Wandlampe_L,Wohnzimmer,Wandlampe Links
+Licht,WZ_Wandlampe_R,Wohnzimmer,Wandlampe Rechts
+Licht,WZ_Wandlampe_TV_Board,Wohnzimmer,Wandlampe TV
+Steckdose,WZ_Steckdose_Sideboard_R,Wohnzimmer,Sideboard
+Heizung,WZ_Heizung,Wohnzimmer,Heizung
+Kontakt,WZ_Terrassentuer_L,Wohnzimmer,Terrassentür
+Licht,WZ_ModeAnwesend,Wohnzimmer,Anwesend
+Steckdose,WZ_Steckdose_Move,Wohnzimmer,Move
+Media,SZ_MediaClient,Schlafzimmer,MediaClient
+RGBLicht,SZ_LichtBett,Schlafzimmer,Licht Bett
+Kontakt,SZ_Fenster,Schlafzimmer,Fenster
+Heizung,SZ_Heizung,Schlafzimmer,Heizung
+Heizung,BZ_Heizung,Badezimmer,Heizung
+Kontakt,BZ_Fenster,Badezimmer,Fenster
+Heizung,DG_Heizung,Dachgeschoss,Heizung
+Rollo,KU_Rollo,Wohnzimmer,Rollo

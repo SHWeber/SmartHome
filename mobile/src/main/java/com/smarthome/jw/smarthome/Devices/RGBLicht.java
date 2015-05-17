@@ -1,5 +1,6 @@
 package com.smarthome.jw.smarthome.Devices;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,9 +12,12 @@ import android.graphics.Rect;
 public class RGBLicht extends Gerät {
 
     private String actState;
+    private Integer rotWert;
+    private Integer grünWert;
+    private Integer blauWert;
 
-    public RGBLicht(String type, String name, String roomAlias, String nameAlias) {
-        super(type,name,roomAlias,nameAlias);
+    public RGBLicht(Context context,String type, String name, String roomAlias, String nameAlias) {
+        super(context,type,name,roomAlias,nameAlias);
 
         actState = "";
 
