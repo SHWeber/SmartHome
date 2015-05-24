@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.GridLayout;
 
 /**
- * Created by jonas on 24.05.15.
+ * Created by jonas on 24.05.15.d
  */
 public class GridView extends GridLayout {
 
