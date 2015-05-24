@@ -76,10 +76,6 @@ public class Template extends GridLayout {
     }
 
 
-
-
-
-
     public ArrayList<RelativeRect> getDoubleTemplate() {
 
         ArrayList<RelativeRect> relRect = new ArrayList<RelativeRect>();

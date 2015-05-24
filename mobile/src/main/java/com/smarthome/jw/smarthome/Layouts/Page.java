@@ -20,7 +20,9 @@ import android.widget.ScrollView;
 
 import com.smarthome.jw.smarthome.Devices.Gerät;
 import com.smarthome.jw.smarthome.Devices.Licht;
+import com.smarthome.jw.smarthome.Devices.Steckdose;
 import com.smarthome.jw.smarthome.R;
+import com.smarthome.jw.smarthome.Template.RelativeRect;
 import com.smarthome.jw.smarthome.Template.Template;
 
 import java.util.ArrayList;
@@ -32,10 +34,10 @@ public class Page extends ScrollView {
 
     public ArrayList<Gerät> Devices = new ArrayList<Gerät>();
     public Template Template;
-
+    public Context Context;
     public String Name;
     public String ViewType;
-    public GridLayout gridLayout;
+    public GridView GridView;
 
     private boolean DrawPage;
     private boolean isTablet;
@@ -47,20 +49,54 @@ public class Page extends ScrollView {
         Template = new Template(context,devices.size());
         Devices = devices;
         ViewType = viewType;
-        setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
-        gridLayout = new GridLayout(context);
-        gridLayout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        gridLayout.setBackgroundColor(Color.BLUE);
+        Context = context;
+        /**
+         *
+         * Test Umgebung
+         *
+         *
+         */
+
+
+
+
+        /**
+         *
+         * Test Umgebung
+         *
+         *
+         */
+
+
+
+        GridView = new GridView(context);
+        GridView.setBackgroundColor(Color.BLUE);
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+      //  params.setMargins(10, 10, 10, 10);
+
+        GridView.setLayoutParams(params);
+
         Licht licht;
-        for (int i = 0; i < 6; i++) {
-            licht = new Licht(context,"Licht","WZ_Vitrine","Wohnzimmer","Vitrine");
-            licht.setLayoutParams(new LayoutParams(200, 200));
-            gridLayout.addView(licht);
-            gridLayout.setColumnCount(3);
+        for (int i = 0; i < 1; i++) {
+            licht = new Licht(context,"Licht","WZ_Vitrine","Wohnzimmer", "Vitrine");
+            GridLayout.LayoutParams param =new GridLayout.LayoutParams();
+
+            param.height = 400;
+            param.width = 400;
+            param.rightMargin = 10;
+            param.leftMargin = 10;
+            param.topMargin = 10;
+            param.bottomMargin = 10;
+
+
+            //licht.setLayoutParams(param);
+          //  GridView.addView(licht);
+
+          //  gridLayout.setColumnCount();
 
         }
 
-        addView(gridLayout);
+        addView(GridView);
 
 
         isTablet = getResources().getBoolean(R.bool.isTablet);
@@ -92,6 +128,12 @@ public class Page extends ScrollView {
     protected void onDraw(Canvas canvas) {
         if(DrawPage) {
             super.onDraw(canvas);
+
+
+        /**    Licht licht = new Licht(Context,"Licht","WZ_Vitrine","Wohnzimmer","Vitrine");
+            Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
+            licht.Draw(canvas,aRect);
+
     /**    Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
         int X = aRect.centerX();
         int Y = aRect.centerY();

@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.net.Network;
 import android.os.AsyncTask;
+import android.view.View;
 
 import com.smarthome.jw.smarthome.InputOutput.HTTP;
 import com.smarthome.jw.smarthome.InputOutput.HttpIO;
@@ -68,7 +69,7 @@ public class Licht extends Gerät {
     @Override
     public boolean Draw(Canvas canvas, Rect rect) {
 
-            Update();
+          //  Update();
             int wdt = rect.centerX();
             int hgt = rect.centerY();
             Paint paint = new Paint();
@@ -86,6 +87,12 @@ public class Licht extends Gerät {
 
         return false;
     }
+
+    @Override
+    public void setOnLongClickListener(OnLongClickListener l) {
+        super.setOnLongClickListener(l);
+    }
+
 
     @Override
     public void Update() {

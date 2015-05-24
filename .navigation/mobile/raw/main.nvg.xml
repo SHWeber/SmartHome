@@ -19,5 +19,21 @@
         x = "2256"      
         y = "96"/>
     </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.smarthome.jw.smarthome.Home"/>
+      <point      
+        x = "2016"      
+        y = "-104"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "com.smarthome.jw.smarthome.LoadScreen"/>
+      <point      
+        x = "550"      
+        y = "150"/>
+    </statePointEntry>
   </locations>
 </navigationModel>
