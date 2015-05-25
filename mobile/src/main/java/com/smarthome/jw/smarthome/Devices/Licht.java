@@ -24,7 +24,7 @@ public class Licht extends Gerät implements View.OnClickListener {
     public Licht(Context context,String type, String name, String roomAlias, String nameAlias) {
         super(context,type,name,roomAlias,nameAlias);
 
-        actState = "Notact";
+        actState = "No-act";
 
     }
 
@@ -60,7 +60,6 @@ public class Licht extends Gerät implements View.OnClickListener {
     @Override
     public String getState() {
 
-
         return actState;
     }
 
@@ -82,61 +81,23 @@ public class Licht extends Gerät implements View.OnClickListener {
             canvas.drawText(getState(), wdt, hgt+100, paint);
         }
 
-          //  canvas.drawText(getState(), wdt, hgt+50, paint);
-
-
-
         return false;
     }
 
 
     @Override
     public void Update() {
-
-
-        String response = "";
-        /**       String Network = "http://server:8083/fhem&cmd=%7BValue%28%22";
-        String readstr = "%22%29%7D&XHR=1";
-
-
-
-        try {
-
-            URL url = new URL(Network+getName()+readstr);
-            URLConnection urlConnection = url.openConnection();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String s = "";
-            while ((s = in.readLine()) != null) {
-                response += s;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-
-        }
-        */
-
         HttpTask httpTask = new HttpTask(new AsyncResponse() {
             @Override
             public void processFinish(String output) {
                 setState(output);
             }
         });
-
         httpTask.execute(this);
-
-
     }
 
     @Override
     public void processFinish(String output) {
         setState(output);
     }
-
-
-
-
 }

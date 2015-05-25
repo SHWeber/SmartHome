@@ -17,6 +17,7 @@ import android.widget.GridView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.smarthome.jw.smarthome.Devices.Gerät;
 import com.smarthome.jw.smarthome.Devices.Licht;
@@ -37,7 +38,6 @@ public class Page extends ScrollView implements View.OnClickListener {
     public Context Context;
     public String Name;
     public String ViewType;
-    public GridLayout GridLayout;
 
     private boolean DrawPage;
     private boolean isTablet;
@@ -51,77 +51,21 @@ public class Page extends ScrollView implements View.OnClickListener {
         ViewType = viewType;
         Context = context;
 
-        GridLayout = new GridLayout(context);
-
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        //  params.setMargins(10, 10, 10, 10);
 
+        setBackgroundColor(getResources().getColor(android.R.color.transparent));
+        setLayoutParams(params);
 
         for (int i = 0; i < Devices.size()-1; i++) {
-            GridLayout.addView(devices.get(i));
-        }
-        /**
-         *
-         * Test Umgebung
-         *
-         *
-         */
-
-
-        addView(GridLayout);
-
-        /**
-         *
-         * Test Umgebung
-         *
-         *
-
-
-
-
-        GridView = new GridView(context);
-        GridView.setBackgroundColor(Color.BLUE);
-        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-      //  params.setMargins(10, 10, 10, 10);
-
-        GridView.setLayoutParams(params);
-
-        Licht licht;
-        for (int i = 0; i < 1; i++) {
-            licht = new Licht(context,"Licht","WZ_Vitrine","Wohnzimmer", "Vitrine");
-            GridLayout.LayoutParams param =new GridLayout.LayoutParams();
-
-            param.height = 400;
-            param.width = 400;
-            param.rightMargin = 10;
-            param.leftMargin = 10;
-            param.topMargin = 10;
-            param.bottomMargin = 10;
-
-
-            //licht.setLayoutParams(param);
-          //  GridView.addView(licht);
-
-          //  gridLayout.setColumnCount();
+            Template.addView(devices.get(i),  new LayoutParams(LayoutParams.FILL_PARENT,
+                    LayoutParams.WRAP_CONTENT) );
 
         }
 
-        addView(GridView); */
-
-        //Licht  licht = new Licht(context,"Licht","WZ_Vitrine","Wohnzimmer", "Vitrine");
-        //addView(licht);
-
-        View.OnClickListener clickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UpdateDevices();
-            }
-        };
-
-
-
+        addView(Template);
         isTablet = getResources().getBoolean(R.bool.isTablet);
         DrawPage = true;
+
     }
 
     public void AddDevice(Gerät device) {
@@ -133,7 +77,6 @@ public class Page extends ScrollView implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
 
     }
 
@@ -150,35 +93,12 @@ public class Page extends ScrollView implements View.OnClickListener {
         if(DrawPage) {
             super.onDraw(canvas);
 
-            View view = null;
-
-
-
-        Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
-        int X = aRect.centerX();
-        int Y = aRect.centerY();
-
-        int lgt = 100; // bei ScaleFaktor 1
-            /**
-        int xstart =Math.round(X-lgt*scaleFaktor);
-        int ystart =Math.round(Y-lgt*scaleFaktor);
-        int xende = Math.round(X + lgt*scaleFaktor);
-        int yende = Math.round(Y+ lgt * scaleFaktor);*/
-
             for (int i = 0; i < getChildCount() ; i++) {
-                view = getChildAt(i);
+                View view = getChildAt(i);
 
-                if(view instanceof GridLayout) {
+                if(view instanceof Template) {
                     view.draw(canvas);
-                    int k= 0;
-                    for (int j = 0; j < ((GridLayout) view).getChildCount(); j++) {
-                        View view2 = ((GridLayout) view).getChildAt(j);
-                        Rect bRect = new Rect(0, 0+k*(150), 300, 0+k*(150)+150);
-                        if(view2 instanceof Licht) {
-                            k = k +1;
-                            Licht licht = (Licht) view2;
-                            licht.Draw(canvas,bRect);
-                        }
+
                     }
                 }
             }
@@ -188,12 +108,8 @@ public class Page extends ScrollView implements View.OnClickListener {
         paint.setColor(Color.BLUE);
         canvas.drawRect(bRect,paint);
 
-
-
         Template.setTemplate(Devices.size());
         UpdatePageState();
-
-
 
         for (int i = 0; i < Devices.size(); i++) {
             Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -214,7 +130,7 @@ public class Page extends ScrollView implements View.OnClickListener {
 
         }
 
-    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

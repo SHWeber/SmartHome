@@ -3,14 +3,19 @@ package com.smarthome.jw.smarthome.Template;
 
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.text.BoringLayout;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.GridView;
+
+import com.smarthome.jw.smarthome.Devices.Gerät;
 
 import java.util.ArrayList;
 
@@ -31,6 +36,11 @@ public class Template extends GridLayout {
 
     private final Integer dx= 100;
     private final Integer dy= 100;
+
+
+    public Template(Context context) {
+        super(context);
+    }
 
 
 
@@ -95,13 +105,42 @@ public class Template extends GridLayout {
 
     }
 
-
-
-
-
-
-
     public RelativeRect getDeviceRect(int i) {
+
         return DeviceRect.get(i);
     }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+
+        Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
+        int X = aRect.centerX();
+        int Y = aRect.centerY();
+        int k = 0;
+        for (int j = 0; j < getChildCount(); j++) {
+            View view2 = getChildAt(j);
+            Rect bRect = new Rect(0, 0 + k * (150), 300, 0 + k * (150) + 150);
+            if (view2 instanceof Gerät) {
+                k = k + 1;
+                Gerät gerät = (Gerät) view2;
+                gerät.Draw(canvas, bRect);
+            }
+        }
+
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = 3000 + 50;
+        setMeasuredDimension(width, height);
+    }
+
+
+
+
 }
