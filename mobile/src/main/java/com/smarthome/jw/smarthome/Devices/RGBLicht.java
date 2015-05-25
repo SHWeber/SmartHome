@@ -69,6 +69,11 @@ public class RGBLicht extends Gerät {
     }
 
     @Override
+    public void processFinish(String output) {
+
+    }
+
+    @Override
     public void Update() {
 
 /**

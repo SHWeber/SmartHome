@@ -5,44 +5,46 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.net.Network;
-import android.os.AsyncTask;
 import android.view.View;
 
-import com.smarthome.jw.smarthome.InputOutput.HTTP;
-import com.smarthome.jw.smarthome.InputOutput.HttpIO;
+import com.smarthome.jw.smarthome.InputOutput.HttpTask;
+import com.smarthome.jw.smarthome.Interfaces.AsyncResponse;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by jonas on 19.04.15.
  */
-public class Licht extends Gerät {
+public class Licht extends Gerät implements View.OnClickListener {
 
 
-    private boolean actState;
+    private String actState;
 
     public Licht(Context context,String type, String name, String roomAlias, String nameAlias) {
         super(context,type,name,roomAlias,nameAlias);
 
-        actState = false;
+        actState = "Notact";
 
     }
 
-
+    @Override
+    public void onClick(View v) {
+        Update();
+    }
 
     @Override
     public boolean setState(String state) {
         if (state != null)  {
+            if(state.equalsIgnoreCase("off")) {
+                actState = "Aus";
+            }
+            else if (state.equalsIgnoreCase("on")) {
+                actState = "An";
+            } else {
 
-            actState = false;
+                actState = "kein Status";
+            }
             setUpdated(true);
             return true;
         }
@@ -57,30 +59,29 @@ public class Licht extends Gerät {
 
     @Override
     public String getState() {
-        if (actState) {
-            return "An";
-        } else if (!actState) {
-            return "Aus";
-        }
 
-        return "";
+
+        return actState;
     }
 
     @Override
     public boolean Draw(Canvas canvas, Rect rect) {
 
-          //  Update();
-            int wdt = rect.centerX();
+            int wdt = rect.left;
             int hgt = rect.centerY();
             Paint paint = new Paint();
             paint.setColor(Color.WHITE);
             paint.setTextSize(50);
 
-            canvas.drawLine(rect.left,rect.top,rect.right,rect.top,paint);
+            canvas.drawLine(rect.left, rect.top, rect.right, rect.top, paint);
             canvas.drawLine(rect.right,rect.top,rect.right,rect.bottom,paint);
-            canvas.drawLine(rect.right,rect.bottom,rect.left,rect.bottom,paint);
+            canvas.drawLine(rect.right, rect.bottom, rect.left, rect.bottom, paint);
             canvas.drawLine(rect.left,rect.bottom,rect.left,rect.top,paint);
-            canvas.drawText(getNameAlias(),wdt,hgt,paint);
+            canvas.drawText(getNameAlias(), wdt, hgt, paint);
+        if(actState != null) {
+            canvas.drawText(getState(), wdt, hgt+100, paint);
+        }
+
           //  canvas.drawText(getState(), wdt, hgt+50, paint);
 
 
@@ -88,40 +89,51 @@ public class Licht extends Gerät {
         return false;
     }
 
-    @Override
-    public void setOnLongClickListener(OnLongClickListener l) {
-        super.setOnLongClickListener(l);
-    }
-
 
     @Override
     public void Update() {
 
-/**
+
         String response = "";
-        String Network = "http://server:8083/fhem&cmd=%7BValue%28%22";
-        String getState = "%22%29%7D&XHR=1";
+        /**       String Network = "http://server:8083/fhem&cmd=%7BValue%28%22";
+        String readstr = "%22%29%7D&XHR=1";
 
-        DefaultHttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(Network +getName()+getState);
+
+
         try {
-            HttpResponse execute = client.execute(httpGet);
-            InputStream content = execute.getEntity().getContent();
 
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+            URL url = new URL(Network+getName()+readstr);
+            URLConnection urlConnection = url.openConnection();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
             String s = "";
-            while ((s = buffer.readLine()) != null) {
+            while ((s = in.readLine()) != null) {
                 response += s;
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+
         }
+        */
 
-        setState(response);*/
+        HttpTask httpTask = new HttpTask(new AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+                setState(output);
+            }
+        });
+
+        httpTask.execute(this);
 
 
+    }
 
+    @Override
+    public void processFinish(String output) {
+        setState(output);
     }
 
 

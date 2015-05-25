@@ -16,6 +16,7 @@ public class TV extends Gerät {
     public TV(Context context,String type, String name, String roomAlias, String nameAlias) {
         super(context,type,name,roomAlias,nameAlias);
 
+        Update();
         actState = "";
 
     }
@@ -36,6 +37,12 @@ public class TV extends Gerät {
             return false;
         }
     }
+
+    @Override
+    public void processFinish(String output) {
+
+    }
+
 
 
     @Override

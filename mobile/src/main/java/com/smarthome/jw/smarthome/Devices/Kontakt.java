@@ -37,6 +37,13 @@ public class Kontakt extends Gerät {
         }
     }
 
+    @Override
+    public void processFinish(String output) {
+
+    }
+
+
+
 
     @Override
     public String getState() {

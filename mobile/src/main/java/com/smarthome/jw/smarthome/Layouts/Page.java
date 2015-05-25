@@ -30,14 +30,14 @@ import java.util.ArrayList;
 /**
  * Created by jonas on 19.04.15.
  */
-public class Page extends ScrollView {
+public class Page extends ScrollView implements View.OnClickListener {
 
     public ArrayList<Gerät> Devices = new ArrayList<Gerät>();
     public Template Template;
     public Context Context;
     public String Name;
     public String ViewType;
-    public GridView GridView;
+    public GridLayout GridLayout;
 
     private boolean DrawPage;
     private boolean isTablet;
@@ -50,6 +50,16 @@ public class Page extends ScrollView {
         Devices = devices;
         ViewType = viewType;
         Context = context;
+
+        GridLayout = new GridLayout(context);
+
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        //  params.setMargins(10, 10, 10, 10);
+
+
+        for (int i = 0; i < Devices.size()-1; i++) {
+            GridLayout.addView(devices.get(i));
+        }
         /**
          *
          * Test Umgebung
@@ -58,14 +68,14 @@ public class Page extends ScrollView {
          */
 
 
-
+        addView(GridLayout);
 
         /**
          *
          * Test Umgebung
          *
          *
-         */
+
 
 
 
@@ -96,11 +106,21 @@ public class Page extends ScrollView {
 
         }
 
-        addView(GridView);
+        addView(GridView); */
+
+        //Licht  licht = new Licht(context,"Licht","WZ_Vitrine","Wohnzimmer", "Vitrine");
+        //addView(licht);
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateDevices();
+            }
+        };
+
 
 
         isTablet = getResources().getBoolean(R.bool.isTablet);
-
         DrawPage = true;
     }
 
@@ -111,7 +131,11 @@ public class Page extends ScrollView {
 
     }
 
+    @Override
+    public void onClick(View v) {
 
+
+    }
 
     public void UpdateDevices() {
 
@@ -120,29 +144,45 @@ public class Page extends ScrollView {
         }
     }
 
-    public void Update() {
-
-    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         if(DrawPage) {
             super.onDraw(canvas);
 
+            View view = null;
 
-        /**    Licht licht = new Licht(Context,"Licht","WZ_Vitrine","Wohnzimmer","Vitrine");
-            Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
-            licht.Draw(canvas,aRect);
 
-    /**    Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+        Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
         int X = aRect.centerX();
         int Y = aRect.centerY();
+
         int lgt = 100; // bei ScaleFaktor 1
+            /**
         int xstart =Math.round(X-lgt*scaleFaktor);
         int ystart =Math.round(Y-lgt*scaleFaktor);
         int xende = Math.round(X + lgt*scaleFaktor);
-        int yende = Math.round(Y+ lgt * scaleFaktor);
+        int yende = Math.round(Y+ lgt * scaleFaktor);*/
 
+            for (int i = 0; i < getChildCount() ; i++) {
+                view = getChildAt(i);
+
+                if(view instanceof GridLayout) {
+                    view.draw(canvas);
+                    int k= 0;
+                    for (int j = 0; j < ((GridLayout) view).getChildCount(); j++) {
+                        View view2 = ((GridLayout) view).getChildAt(j);
+                        Rect bRect = new Rect(0, 0+k*(150), 300, 0+k*(150)+150);
+                        if(view2 instanceof Licht) {
+                            k = k +1;
+                            Licht licht = (Licht) view2;
+                            licht.Draw(canvas,bRect);
+                        }
+                    }
+                }
+            }
+/**
         Rect bRect = new Rect(xstart,ystart,xende,yende);
         Paint paint = new Paint();
         paint.setColor(Color.BLUE);

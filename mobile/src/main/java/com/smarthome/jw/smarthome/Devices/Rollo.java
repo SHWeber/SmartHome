@@ -66,6 +66,13 @@ public class Rollo extends Gerät {
     }
 
     @Override
+    public void processFinish(String output) {
+
+    }
+
+
+
+    @Override
     public void Update() {
 
 /**

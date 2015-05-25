@@ -36,6 +36,12 @@ public class Steckdose extends Gerät {
             return false;
         }
     }
+    @Override
+    public void processFinish(String output) {
+
+    }
+
+
 
 
     @Override

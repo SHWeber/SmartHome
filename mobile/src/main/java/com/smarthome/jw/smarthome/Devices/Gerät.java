@@ -6,6 +6,8 @@ import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.view.View;
 
+import com.smarthome.jw.smarthome.Interfaces.AsyncResponse;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -17,7 +19,7 @@ import java.io.InputStreamReader;
 /**
  * Created by jonas on 19.04.15.
  */
-public abstract class Gerät extends View {
+public abstract class Gerät extends View implements AsyncResponse {
 
     private String RoomAlias;
     private String Name;
@@ -44,6 +46,7 @@ public abstract class Gerät extends View {
     abstract public boolean setState(String state);
     abstract public String getState();
     abstract public void Update();
+
 
     public String getRequest() {
 

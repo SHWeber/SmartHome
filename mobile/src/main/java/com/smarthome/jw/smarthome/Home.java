@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.os.StrictMode;
 
 import com.smarthome.jw.smarthome.Devices.Gerät;
 import com.smarthome.jw.smarthome.InputOutput.HttpIO;
@@ -63,6 +64,7 @@ public class Home extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        page.UpdateDevices();
     }
 
     @Override

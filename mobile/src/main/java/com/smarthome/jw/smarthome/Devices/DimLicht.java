@@ -38,6 +38,14 @@ public class DimLicht extends Gerät {
         }
     }
 
+    @Override
+    public void processFinish(String output) {
+
+    }
+
+
+
+
 
     @Override
     public String getState() {

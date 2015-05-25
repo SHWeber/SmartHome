@@ -33,7 +33,11 @@ public class Heizung extends Gerät {
         return null;
     }
 
-            
+
+    @Override
+    public void processFinish(String output) {
+
+    }
 
 
     @Override
