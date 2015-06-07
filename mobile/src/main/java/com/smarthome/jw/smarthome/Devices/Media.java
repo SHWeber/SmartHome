@@ -50,8 +50,10 @@ public class Media extends Gerät {
         int wdt = rect.centerX();
         int hgt = rect.centerY();
         Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
         paint.setTextSize(50);
+        paint.setColor(Color.DKGRAY);
+        canvas.drawRect(rect, paint);
+        paint.setColor(Color.WHITE);
 
         canvas.drawLine(rect.left,rect.top,rect.right,rect.top,paint);
         canvas.drawLine(rect.right,rect.top,rect.right,rect.bottom,paint);

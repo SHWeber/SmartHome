@@ -1,10 +1,15 @@
 package com.smarthome.jw.smarthome.Devices;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+
+import com.smarthome.jw.smarthome.R;
 
 /**
  * Created by jonas on 01.05.15.
@@ -59,14 +64,16 @@ public class DimLicht extends Gerät {
         int wdt = rect.centerX();
         int hgt = rect.centerY();
         Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
         paint.setTextSize(50);
+        paint.setColor(Color.DKGRAY);
+        canvas.drawRect(rect, paint);
+        paint.setColor(Color.WHITE);
 
-        canvas.drawLine(rect.left,rect.top,rect.right,rect.top,paint);
+        canvas.drawLine(rect.left, rect.top, rect.right, rect.top, paint);
         canvas.drawLine(rect.right,rect.top,rect.right,rect.bottom,paint);
         canvas.drawLine(rect.right,rect.bottom,rect.left,rect.bottom,paint);
         canvas.drawLine(rect.left,rect.bottom,rect.left,rect.top,paint);
-        canvas.drawText(getNameAlias(),wdt,hgt,paint);
+        canvas.drawText(getNameAlias(), wdt, hgt, paint);
         canvas.drawText(getState(), wdt, hgt+50, paint);
 
 

@@ -46,24 +46,28 @@ public class Page extends ScrollView implements View.OnClickListener {
         super(context);
 
         Name = name;
-        Template = new Template(context,devices.size());
+        Template = new Template(context);
         Devices = devices;
         ViewType = viewType;
         Context = context;
+        isTablet = getResources().getBoolean(R.bool.isTablet);
+
 
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
         setBackgroundColor(getResources().getColor(android.R.color.transparent));
         setLayoutParams(params);
 
-        for (int i = 0; i < Devices.size()-1; i++) {
-            Template.addView(devices.get(i),  new LayoutParams(LayoutParams.FILL_PARENT,
-                    LayoutParams.WRAP_CONTENT) );
 
+        for (int i = 0; i < Devices.size()-1; i++) {
+
+            Template.AddRect(Devices.get(i).getDx(), Devices.get(i).getDy());
+            Template.addView(Devices.get(i));
         }
 
         addView(Template);
-        isTablet = getResources().getBoolean(R.bool.isTablet);
+
+
         DrawPage = true;
 
     }
@@ -71,7 +75,8 @@ public class Page extends ScrollView implements View.OnClickListener {
     public void AddDevice(Gerät device) {
 
         Devices.add(device);
-        Template.UpdateTemplate(Devices.size());
+        Template.AddRect(device.getDx(),device.getDy());
+        Template.addView(device);
 
     }
 
@@ -143,6 +148,8 @@ public class Page extends ScrollView implements View.OnClickListener {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        UpdateDevices();
+        invalidate();
         return super.onTouchEvent(event);
     }
 }

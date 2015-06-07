@@ -28,6 +28,9 @@ public abstract class Gerät extends View implements AsyncResponse {
     private boolean isUpdated;
     private Double deltaTimeUp;
 
+    private  Integer dx;
+    private  Integer dy;
+
 
 
     public Gerät(Context context,String type, String name, String roomAlias, String nameAlias) {
@@ -39,6 +42,8 @@ public abstract class Gerät extends View implements AsyncResponse {
         NameAlias = nameAlias;
         isUpdated = false;
         deltaTimeUp = 60.0;
+        dx = 300;
+        dy = 300;
     }
 
 
@@ -93,8 +98,19 @@ public abstract class Gerät extends View implements AsyncResponse {
         this.isUpdated = isUpdated;
     }
 
+    public Integer getDx() {
+        return dx;
+    }
 
+    public void setDx(Integer dx) {
+        this.dx = dx;
+    }
 
+    public Integer getDy() {
+        return dy;
+    }
 
-
+    public void setDy(Integer dy) {
+        this.dy = dy;
+    }
 }

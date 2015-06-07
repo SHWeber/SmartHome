@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.GridLayout;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.smarthome.jw.smarthome.Devices.Gerät;
 
@@ -22,114 +23,74 @@ import java.util.ArrayList;
 /**
  * Created by jonas on 19.04.15.
  */
-public class Template extends GridLayout {
+public class Template extends LinearLayout {
 
     private Integer NumOfDevices;
-    public Double Margin;
+    private Integer Margin;
+    private Double MarginRel;
     public Double ScaleFaktor;
-    public Integer DeviceColunms;
     public DisplayMetrics displayMetrics;
 
     public boolean isLandscape;
 
-    public ArrayList<RelativeRect> DeviceRect = new ArrayList<RelativeRect>();
-
-    private final Integer dx= 100;
-    private final Integer dy= 100;
+    public ArrayList<Rect> DeviceRect = new ArrayList<Rect>();
 
 
     public Template(Context context) {
         super(context);
-    }
 
-
-
-    public Template(Context context, Integer numOfDevices) {
-        super(context);
-        Margin = 0.02;
+        MarginRel = 5.0;
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         displayMetrics = new DisplayMetrics();
         Point point = new Point();
+
         Display display = wm.getDefaultDisplay();
         display.getSize(point);
         display.getMetrics(displayMetrics);
 
         ScaleFaktor = (double) displayMetrics.density;
 
-
-
-
-
-
-        setTemplateSize(numOfDevices);
-    }
-
-    public void setTemplateSize(Integer numOfDevices) {
-
-        DeviceRect.clear();
-        NumOfDevices = numOfDevices;
-        Double displayWidth = (double) displayMetrics.widthPixels;
-        Double sideMargin = displayMetrics.widthPixels * Margin * 2 + ((double)NumOfDevices - 1.0) * Margin;
-        Double deviceWidth = dx * ScaleFaktor + displayMetrics.widthPixels * Margin ;
-
-        long devicesCol = Math.round(displayWidth / deviceWidth);
-
-        double devicesWidth = deviceWidth * devicesCol;
-
-
-
-    }
-
-    public void setDeviceColunms() {
-
-
+        Double margin = ScaleFaktor * MarginRel;
+        Margin = margin.intValue();
     }
 
 
-    public ArrayList<RelativeRect> getDoubleTemplate() {
-
-        ArrayList<RelativeRect> relRect = new ArrayList<RelativeRect>();
-
-        relRect.add(new RelativeRect(0.0 + Margin, 0.0 + Margin, 0.5 - Margin, 1.0 - Margin));
-        relRect.add(new RelativeRect(0.5 + Margin, 0.0 + Margin, 1.0 - Margin, 1.0 - Margin));
-
-        return relRect;
-
-    }
-
-    public void UpdateTemplate(Integer numOfDevices) {
-
-        setTemplateSize(numOfDevices);
-
-
-
-    }
-
-    public RelativeRect getDeviceRect(int i) {
+    public Rect getDeviceRect(int i) {
 
         return DeviceRect.get(i);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    public void AddRect(int x, int y) {
 
+        Double width = x * ScaleFaktor;
+        Double height = y * ScaleFaktor;
 
-        Rect aRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
-        int X = aRect.centerX();
-        int Y = aRect.centerY();
-        int k = 0;
-        for (int j = 0; j < getChildCount(); j++) {
-            View view2 = getChildAt(j);
-            Rect bRect = new Rect(0, 0 + k * (150), 300, 0 + k * (150) + 150);
-            if (view2 instanceof Gerät) {
-                k = k + 1;
-                Gerät gerät = (Gerät) view2;
-                gerät.Draw(canvas, bRect);
+        int minWidth = width.intValue() + 2 * Margin;
+        int minHeight = height.intValue() + 2 * Margin;
+
+        if(DeviceRect.size() == 0) {
+
+            DeviceRect.add(new Rect(Margin+0,0+Margin,0+width.intValue()+Margin,height.intValue()+Margin));
+        } else {
+
+            Rect rect = DeviceRect.get(DeviceRect.size() - 1);
+
+            if ((rect.right + minWidth ) < displayMetrics.widthPixels ) {
+                DeviceRect.add(new Rect(rect.right + Margin+0,rect.top,rect.right+Margin+0+width.intValue(),rect.top+height.intValue()));
+            } else {
+                DeviceRect.add(new Rect(Margin+0,rect.bottom +Margin,Margin+0+width.intValue(),Margin+height.intValue()+rect.bottom));
             }
         }
-
     }
+
+    public boolean DeleteRect(int index) {
+        if(index < DeviceRect.size()) {
+
+            return true;
+        }
+        return true;
+    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -138,6 +99,21 @@ public class Template extends GridLayout {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = 3000 + 50;
         setMeasuredDimension(width, height);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+
+        for (int j = 0; j < getChildCount(); j++) {
+            View view2 = getChildAt(j);
+            if (view2 instanceof Gerät) {
+                Gerät gerät = (Gerät) view2;
+                gerät.Draw(canvas, getDeviceRect(j));
+            }
+        }
+
     }
 
 
