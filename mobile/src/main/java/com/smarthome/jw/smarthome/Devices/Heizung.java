@@ -3,6 +3,8 @@ package com.smarthome.jw.smarthome.Devices;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Created by jonas on 26.04.15.
@@ -33,6 +35,12 @@ public class Heizung extends Gerät {
         return null;
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        invalidate();
+        return false;
+    }
+
 
     @Override
     public void processFinish(String output) {
@@ -41,7 +49,12 @@ public class Heizung extends Gerät {
 
 
     @Override
-    public void Update() {
+    public void UpdateAsync() {
+
+    }
+
+    @Override
+    public void UpdateSync() {
 
     }
 }

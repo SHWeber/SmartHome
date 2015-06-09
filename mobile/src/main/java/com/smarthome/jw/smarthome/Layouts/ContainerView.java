@@ -30,6 +30,8 @@ public class ContainerView extends LinearLayout {
         Page.UpdateDevices();
     }
 
+
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

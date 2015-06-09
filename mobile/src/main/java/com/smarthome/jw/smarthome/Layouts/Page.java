@@ -2,28 +2,12 @@ package com.smarthome.jw.smarthome.Layouts;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.GridLayout;
-import android.widget.GridView;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.smarthome.jw.smarthome.Devices.Gerät;
-import com.smarthome.jw.smarthome.Devices.Licht;
-import com.smarthome.jw.smarthome.Devices.Steckdose;
 import com.smarthome.jw.smarthome.R;
-import com.smarthome.jw.smarthome.Template.RelativeRect;
 import com.smarthome.jw.smarthome.Template.Template;
 
 import java.util.ArrayList;
@@ -31,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by jonas on 19.04.15.
  */
-public class Page extends ScrollView implements View.OnClickListener {
+public class Page extends ScrollView implements View.OnClickListener,View.OnTouchListener {
 
     public ArrayList<Gerät> Devices = new ArrayList<Gerät>();
     public Template Template;
@@ -88,7 +72,7 @@ public class Page extends ScrollView implements View.OnClickListener {
     public void UpdateDevices() {
 
         for (int i = 0; i < Devices.size() ; i++) {
-            Devices.get(i).Update();
+            Devices.get(i).UpdateAsync();
         }
     }
 
@@ -150,7 +134,13 @@ public class Page extends ScrollView implements View.OnClickListener {
     public boolean onTouchEvent(MotionEvent event) {
         UpdateDevices();
         invalidate();
+        getParent().requestDisallowInterceptTouchEvent(true);
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return false;
     }
 }
 

@@ -39,7 +39,7 @@ public class Template extends LinearLayout {
     public Template(Context context) {
         super(context);
 
-        MarginRel = 5.0;
+        MarginRel = 10.0;
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         displayMetrics = new DisplayMetrics();
         Point point = new Point();

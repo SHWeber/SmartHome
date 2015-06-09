@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Created by jonas on 01.05.15.
@@ -44,9 +46,15 @@ public class Media extends Gerät {
     }
 
     @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        invalidate();
+        return false;
+    }
+
+    @Override
     public boolean Draw(Canvas canvas, Rect rect) {
 
-        Update();
+        UpdateAsync();
         int wdt = rect.centerX();
         int hgt = rect.centerY();
         Paint paint = new Paint();
@@ -74,7 +82,7 @@ public class Media extends Gerät {
 
 
     @Override
-    public void Update() {
+    public void UpdateAsync() {
 
 /**
  String response = "";
@@ -100,6 +108,11 @@ public class Media extends Gerät {
  setState(response);*/
 
 
+
+    }
+
+    @Override
+    public void UpdateSync() {
 
     }
 

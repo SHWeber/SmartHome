@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
 /**
  * Created by jonas on 19.04.15.
  */
-public abstract class Gerät extends View implements AsyncResponse {
+public abstract class Gerät extends View implements AsyncResponse,View.OnTouchListener {
 
     private String RoomAlias;
     private String Name;
@@ -50,7 +50,8 @@ public abstract class Gerät extends View implements AsyncResponse {
     abstract public boolean Draw(Canvas canvas, Rect rect);
     abstract public boolean setState(String state);
     abstract public String getState();
-    abstract public void Update();
+    abstract public void UpdateAsync();
+    abstract public void UpdateSync();
 
 
     public String getRequest() {
@@ -112,5 +113,14 @@ public abstract class Gerät extends View implements AsyncResponse {
 
     public void setDy(Integer dy) {
         this.dy = dy;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // Compute the height required to render the view
+        // Assume Width will always be MATCH_PARENT.
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int height = 3000 + 50; // Since 3000 is bottom of last Rect to be drawn added and 50 for padding.
+        setMeasuredDimension(width, height);
     }
 }

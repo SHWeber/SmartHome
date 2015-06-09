@@ -8,20 +8,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.smarthome.jw.smarthome.InputOutput.HttpTask;
 import com.smarthome.jw.smarthome.Interfaces.AsyncResponse;
 import com.smarthome.jw.smarthome.R;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLDecoder;
-
 /**
  * Created by jonas on 19.04.15.
  */
-public class Licht extends Gerät implements View.OnClickListener {
+public class Licht extends Gerät {
 
 
     private String actState;
@@ -35,9 +32,19 @@ public class Licht extends Gerät implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-        Update();
+    public void setOnTouchListener(OnTouchListener l) {
+        super.setOnTouchListener(l);
+    }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        invalidate();
+        return false;
     }
 
     @Override
@@ -101,7 +108,7 @@ public class Licht extends Gerät implements View.OnClickListener {
 
 
     @Override
-    public void Update() {
+    public void UpdateAsync() {
         HttpTask httpTask = new HttpTask(new AsyncResponse() {
             @Override
             public void processFinish(String output) {
@@ -109,6 +116,11 @@ public class Licht extends Gerät implements View.OnClickListener {
             }
         });
         httpTask.execute(this);
+    }
+
+    @Override
+    public void UpdateSync() {
+
     }
 
     @Override

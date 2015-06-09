@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Created by jonas on 01.05.15.
@@ -16,7 +18,7 @@ public class TV extends Gerät {
     public TV(Context context,String type, String name, String roomAlias, String nameAlias) {
         super(context,type,name,roomAlias,nameAlias);
 
-        Update();
+        UpdateAsync();
         actState = "";
 
     }
@@ -39,6 +41,12 @@ public class TV extends Gerät {
     }
 
     @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        invalidate();
+        return false;
+    }
+
+    @Override
     public void processFinish(String output) {
 
     }
@@ -53,7 +61,7 @@ public class TV extends Gerät {
     @Override
     public boolean Draw(Canvas canvas, Rect rect) {
 
-        Update();
+        UpdateAsync();
         int wdt = rect.centerX();
         int hgt = rect.centerY();
         Paint paint = new Paint();
@@ -75,7 +83,7 @@ public class TV extends Gerät {
     }
 
     @Override
-    public void Update() {
+    public void UpdateAsync() {
 
 /**
  String response = "";
@@ -101,6 +109,11 @@ public class TV extends Gerät {
  setState(response);*/
 
 
+
+    }
+
+    @Override
+    public void UpdateSync() {
 
     }
 
